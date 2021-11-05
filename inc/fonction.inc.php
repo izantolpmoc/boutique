@@ -95,3 +95,32 @@ function redirige($url){
     die('<meta http-equiv="refresh" content="0;URL='.$url.'">');
     }
 
+//fonction pour créer un panier
+function creation_panier(){ //si la session/panier n'existe pas, on la crée
+
+    if( !isset( $_SESSION['panier'] ) ){
+        $_SESSION['panier'] = array();
+
+        $_SESSION['panier']['titre'] = array();
+        $_SESSION['panier']['id_produit'] = array();
+        $_SESSION['panier']['quantite'] = array();
+        $_SESSION['panier']['prix'] = array();
+
+    }
+}
+
+//fonction d'ajout au panier
+function ajout_panier($titre, $id_produit, $quantite, $prix){
+
+    creation_panier(); //Ici, on fait appel à la fonction déclarée ci-dessus
+        //SOIT, le panier n'existe pas et on le crée (càd la première fois que l'on tente d'ajouter un produit au panier)
+        //SOIT il existe et on l'utilise (puisqu'on ne rentre pas dnas la condition de la fonction creation_panier())
+
+    $_SESSION['panier']['titre'][] = $titre;
+    $_SESSION['panier']['id_produit'][] = $id_produit;
+    $_SESSION['panier']['quantite'][] = $quantite;
+    $_SESSION['panier']['prix'][] = $prix;
+
+    //ATTENTION de bien penser à mettre des crochets VIDES ce qui permet d'ajouter une valeur supplémentaire à un tableau
+
+}
