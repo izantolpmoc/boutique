@@ -116,11 +116,22 @@ function ajout_panier($titre, $id_produit, $quantite, $prix){
         //SOIT, le panier n'existe pas et on le crée (càd la première fois que l'on tente d'ajouter un produit au panier)
         //SOIT il existe et on l'utilise (puisqu'on ne rentre pas dnas la condition de la fonction creation_panier())
 
+    $index = array_search($id_produit, $_SESSION['panier']['id_produit']);
+    debug($index);
+    //array_search(arg 1, arg2);
+        //arg 1 :  ce que l'on recherche
+        //arg2 : dans quel tableau on effctue la recherche
+    //la valeur de retour de la fonction renverra la clé correspondant à l'indice du tableau SI il y a une correspondance de la recher, sinon "false"
+        if($index !== false){ //Si index est strictement different de false, c'est que le produit est déjà présetn dans le panier car la fonction array(search) aura trouvé un indice correspondant et donc on va ajouter la quantité avec la nouvelle récuéprée lors de l'ajout au panier
+            $_SESSION['panier']['quantite'][$index] += $quantite;
+        }else{ //Sinon, c'est que le produit n'est pas dans le panier (la fonction array-search() n'a pas trouvé de correspondance) et donc on unsert toutes les infos dans session/panier
+
+
     $_SESSION['panier']['titre'][] = $titre;
     $_SESSION['panier']['id_produit'][] = $id_produit;
     $_SESSION['panier']['quantite'][] = $quantite;
     $_SESSION['panier']['prix'][] = $prix;
 
     //ATTENTION de bien penser à mettre des crochets VIDES ce qui permet d'ajouter une valeur supplémentaire à un tableau
-
+        }
 }
