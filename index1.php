@@ -70,6 +70,10 @@ if(isset($_GET['action']) && $_GET['action'] == 'display'){
 	
 					
         
+}else{
+        $content .= "<h3 id='choix'>Veuillez choisir une catégorie.</h3>";
+        $content .= "<img id='boules' src='assets/img/boules.png'>";
+        
 };
 // $content .= '</div>';
 

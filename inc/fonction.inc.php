@@ -117,7 +117,7 @@ function ajout_panier($titre, $id_produit, $quantite, $prix){
         //SOIT il existe et on l'utilise (puisqu'on ne rentre pas dnas la condition de la fonction creation_panier())
 
     $index = array_search($id_produit, $_SESSION['panier']['id_produit']);
-    debug($index);
+    // debug($index);
     //array_search(arg 1, arg2);
         //arg 1 :  ce que l'on recherche
         //arg2 : dans quel tableau on effctue la recherche
@@ -134,4 +134,15 @@ function ajout_panier($titre, $id_produit, $quantite, $prix){
 
     //ATTENTION de bien penser à mettre des crochets VIDES ce qui permet d'ajouter une valeur supplémentaire à un tableau
         }
+}
+
+function montant_total(){
+    $total = 0;
+
+    for($i = 0; $i < sizeof($_SESSION['panier']['titre']); $i++){
+    
+        $total += ($_SESSION['panier']['quantite'][$i] * $_SESSION['panier']['prix'][$i]);
+        //A chaque tout de boucle (qui correspond au nombre de produits dans le panier), on ajoute le montant total (quantité*prix) pour chaque produit dans la variable $total
+    }
+    return $total;
 }
