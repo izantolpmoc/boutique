@@ -22,6 +22,67 @@ if( isset($_POST['ajout_panier'] ) ){ //Ici, on vérifie l'existence d'un "submi
     // debug($_SESSION);
 
 }
+//--------------------------------------------
+//--------------------------------------------
+//--------------------------------------------
+//EXERCICE : gérer la validation du panier : SI on valide le panier
+
+if(isset( $_POST['payer']) && $_POST['payer'] == "Payer"){
+
+    $id_membre_connecte = $_SESSION['membre']['id_membre'];
+        // debug($id_membre_connecte);
+
+    $montant_commande = montant_total();
+        // debug($montant_commande);
+
+    //insertion dans la table commande (NOW())
+
+    $pdo->exec(" INSERT INTO commande( id_membre, montant, date ) 
+    
+    VALUES( $id_membre_connecte, $montant_commande, NOW() ) 
+    ");
+    // execute_requete("INSERT INTO commande( id_membre, montant, date) 
+    //             VALUES( $id_membre_connecte, $montant_commande, NOW())
+    //             ");
+                
+    //récupération du numéro de la commande (lastInsertId())
+
+    $id_commande = $pdo -> lastInsertId();
+    
+    $content .= "<div class ='alert alert-success'> Merci pour votre commande, le numéro de la commande est le: $id_commande</div>";
+    //insertion dans la table details_commande (for...)
+
+    for( $i = 0; $i < sizeof( $_SESSION['panier']['id_produit']); $i++){
+        execute_requete("INSERT INTO details_commande( id_commande, id_produit, quantite, prix)
+        VALUES( $id_commande,
+        '".$_SESSION['panier']['id_produit'][$i]."',
+        '".$_SESSION['panier']['quantite'][$i]."',
+        '".$_SESSION['panier']['prix'][$i]."') ");
+
+    //modification du stock en conséquence de la commande (update)
+
+    execute_requete("UPDATE produit SET
+    stock = stock - " . $_SESSION['panier']['quantite'][$i] ."
+    
+    WHERE id_produit = " . $_SESSION['panier']['id_produit'][$i] ." )");
+    }
+
+        //vider le panier
+        unset( $_SESSION['panier'] );
+        //unset( $arg ) : permet de supprimer une variable ($arg)
+    
+}
+
+if(isset( $_GET['action']) && $_GET['action'] == 'vider'){
+    unset($_SESSION['panier']);
+    //Cette portion de code se situe avant l'affichage car on détruit la session/panier et donc il n'y a plus rien à afficher
+}
+
+//--------------------------------------------
+//Autre EXERCICE : donnez la possibilité à l'utilisateur de vider son panier au click via un lien <a>
+
+//--------------------------------------------
+
 //EXERCICE: affichage du contenu du panier sous forme de tableau
     //si le panier est vide on indiquera qu'il est vide sinon on affichera les infos du panier
 // $total = 0;
@@ -118,6 +179,14 @@ if( isset($_POST['ajout_panier'] ) ){ //Ici, on vérifie l'existence d'un "submi
     $content .= "</tr>";
     }
 
+      //Vider le panier :
+      $content .= "<tr>";
+      $content .= "<td>";
+
+          $content .= "<a href='?action=vider' class='btn btn-secondary' > Vider le panier </a>";
+
+      $content .= "</td>";
+  $content .= "</tr>";
     }
 
 
