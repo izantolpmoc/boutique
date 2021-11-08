@@ -23,7 +23,7 @@
 
 // }
 
-function debug($arg){  //version Leeroy
+function debug($var){
     $br = "<br>";
     $brr = "<br><br>";
 
@@ -40,7 +40,7 @@ function debug($arg){  //version Leeroy
             print("<p style='background: black; color: white; padding: 20px; margin: 0;'>");
             print("Console debug by naikho | <span style='color: green'>" . date("h:i:s") . "</span> : " . $brr);
             print("<span style='margin-left: 50px; display: block;'>");
-                print_r($arg);
+                print_r($var);
             print("</span>");
             print("$br</p>");
 
