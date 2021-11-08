@@ -54,7 +54,7 @@ if( empty($_GET['id_produit'])){
     $content1 .= "</div>";
 
     $stock = $affichage['stock'];
-    debug($stock);
+    // debug($stock);
 
 
     if($affichage['stock']>0){
