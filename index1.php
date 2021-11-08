@@ -52,8 +52,6 @@ if(isset($_GET['action']) && $_GET['action'] == 'display'){
                 // $content .= '</div>';
                 // $content .= '</div>';
 
-
-
 			$content .= '<div class="card" style="width: 18rem;">';
 				$content .= "<a href='fiche_produit.php?id_produit=$affichage[id_produit]'>";
   				$content .= "<img src='$affichage[photo]' alt='image_produit' class='card-img-top'>";
@@ -62,6 +60,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'display'){
 					$content.="<p> $affichage[prix]€</p>";
 					$content .= "</a>";
 					if($affichage['stock'] == 0){
+                                                
 							$content .= "<p style='color:red'>en rupture</p>";
 					}
   				$content .= "</div>";

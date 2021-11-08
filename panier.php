@@ -52,23 +52,43 @@ if(isset( $_POST['payer']) && $_POST['payer'] == "Payer"){
     $content .= "<div class ='alert alert-success'> Merci pour votre commande, le numéro de la commande est le: $id_commande</div>";
     //insertion dans la table details_commande (for...)
 
-    for( $i = 0; $i < sizeof( $_SESSION['panier']['id_produit']); $i++){
-        execute_requete("INSERT INTO details_commande( id_commande, id_produit, quantite, prix)
-        VALUES( $id_commande,
-        '".$_SESSION['panier']['id_produit'][$i]."',
-        '".$_SESSION['panier']['quantite'][$i]."',
-        '".$_SESSION['panier']['prix'][$i]."') ");
+//     for( $i = 0; $i < sizeof( $_SESSION['panier']['id_produit']); $i++){
+//         execute_requete("INSERT INTO details_commande( id_commande, id_produit, quantite, prix)
+//         VALUES( $id_commande,
+//         '".$_SESSION['panier']['id_produit'][$i]."',
+//         '".$_SESSION['panier']['quantite'][$i]."',
+//         '".$_SESSION['panier']['prix'][$i]."') ");
 
-    //modification du stock en conséquence de la commande (update)
+//     //modification du stock en conséquence de la commande (update)
 
-    execute_requete(" UPDATE produit SET
-    stock = stock - " . $_SESSION['panier']['quantite'][$i] ."
+//     execute_requete(" UPDATE produit SET
+//     stock = stock - " . $_SESSION['panier']['quantite'][$i] ."
     
-    WHERE id_produit = " . $_SESSION['panier']['id_produit'][$i] ." ");
+//     WHERE id_produit = " . $_SESSION['panier']['id_produit'][$i] ." ");
 
 
-}
+// }
 
+    //insertion dans la table details_commande (for...)
+    for( $i = 0; $i < sizeof( $_SESSION['panier']['id_produit']); $i++){
+
+        execute_requete("INSERT INTO details_commande( id_commande, id_produit, quantite, prix ) 
+
+                        VALUES( $id_commande,
+                                '".$_SESSION['panier']['id_produit'][$i]."',
+                                '".$_SESSION['panier']['quantite'][$i]."',
+                                '".$_SESSION['panier']['prix'][$i]."'
+                            )
+                    ");
+
+        //modification du stock en conséquence de la commande (update)
+        execute_requete(" UPDATE produit SET 
+        
+                            stock = stock - ". $_SESSION['panier']['quantite'][$i] ."
+
+                        WHERE id_produit = ". $_SESSION['panier']['id_produit'][$i] ."
+                    ");
+    }
         //vider le panier
         unset( $_SESSION['panier'] );
         //unset( $arg ) : permet de supprimer une variable ($arg)
