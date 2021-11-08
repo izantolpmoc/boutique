@@ -61,11 +61,13 @@ if(isset( $_POST['payer']) && $_POST['payer'] == "Payer"){
 
     //modification du stock en conséquence de la commande (update)
 
-    execute_requete("UPDATE produit SET
+    execute_requete(" UPDATE produit SET
     stock = stock - " . $_SESSION['panier']['quantite'][$i] ."
     
-    WHERE id_produit = " . $_SESSION['panier']['id_produit'][$i] ." )");
-    }
+    WHERE id_produit = " . $_SESSION['panier']['id_produit'][$i] ." ");
+
+
+}
 
         //vider le panier
         unset( $_SESSION['panier'] );
