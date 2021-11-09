@@ -230,7 +230,8 @@ input[type="file"] {
 
 /* CSS de la page fiche produit */
   .fil_ariane{
-    margin-bottom: 50px;
+    margin: 2em auto;
+
   }
 
   .conteneur_fiche{
@@ -411,4 +412,20 @@ input[type="file"] {
 
 .table{
   margin-top: 2em;
+}
+
+.flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex input,
+.flex a{
+  margin: 5px;
+}
+
+.column{
+  flex-direction: column;
+  justify-content: center;
 }

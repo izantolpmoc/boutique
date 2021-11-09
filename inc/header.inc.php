@@ -69,9 +69,9 @@
             Backoffice
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="<?php echo URL ?>admin/gestion_produit.php">Gestion produit</a></li>
+            <li><a class="dropdown-item" href="<?php echo URL ?>admin/gestion_produit.php?action=affichage">Gestion produit</a></li>
             <li><a class="dropdown-item" href="<?php echo URL ?>gestion_membre.php">Gestion membres</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="<?php echo URL ?>gestion_commandes.php">Gestion commandes</a></li>
           </ul>
         </li>
 

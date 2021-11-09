@@ -93,9 +93,9 @@ if($_POST){
         
         ");
 
-        $success= "<div class='alert alert-success'>Modification effectuée ✅.</div>";
+        $success= "<div class='alert alert-success' id='temporary'>Modification effectuée ✅.</div>";
 
-        // redirige('?action=retour');
+        redirige('gestion_membre.php');
     }
 }
 
@@ -167,7 +167,7 @@ if($_POST){
 
 <?php if(isset($_GET['action']) && $_GET['action'] == 'modification'): ?>
 
-<?= $error, $success?>
+<?= $error?>
 <div style="display: flex; flex-direction:column; align-items:center;">
         <form action="" method="POST">
 
@@ -197,15 +197,22 @@ if($_POST){
             <input type="text" name="adresse" value="<?= $adresse?>"><br><br>
 
             <label for="">Statut</label><br>
-            <input type="radio" name="statut" value="1" <?= $admin ?>> Administrateur
-            <input type="radio" name="statut" value="0"  <?= $lambda?>> Lambda <br><br>
+            <div class="flex column">
+                <div class="flex">Administrateur <input type="radio" name="statut" value="1" <?= $admin ?>> </div><br>
+                <div class="flex">Lambda <input type="radio" name="statut" value="0"  <?= $lambda?>> </div>
+            </div><br><br>
 
-            <input type="submit" class="btn btn-secondary" value="Modifier">
-        </form>
+            <div class="flex">
+                <a class="btn btn-secondary" href="gestion_membre.php">Annuler</a>
+                <input type="submit" class="btn btn-secondary" value="Modifier">
+            </div>
+            </form><br><br>
     </div>
 
 <?php else: ?>
+    <?= $success ?>
     <?= $content ?>
 
 <?php endif; ?>
+
 <?php require_once "inc/footer.inc.php"; //inclusion du fichier footer ?>
