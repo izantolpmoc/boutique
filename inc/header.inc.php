@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon site</title>
 
+
 	<!-- CDN CSS BOOTSTRAP -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -13,7 +14,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
 	<!-- CSS PERSO -->
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="<?= $admin ?>assets/css/style.css">
+
 
 </head>
 <body>
@@ -70,8 +72,8 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="<?php echo URL ?>admin/gestion_produit.php?action=affichage">Gestion produit</a></li>
-            <li><a class="dropdown-item" href="<?php echo URL ?>gestion_membre.php">Gestion membres</a></li>
-            <li><a class="dropdown-item" href="<?php echo URL ?>gestion_commandes.php">Gestion commandes</a></li>
+            <li><a class="dropdown-item" href="<?php echo URL ?>admin/gestion_membre.php">Gestion membres</a></li>
+            <li><a class="dropdown-item" href="<?php echo URL ?>admin/gestion_commandes.php">Gestion commandes</a></li>
           </ul>
         </li>
 

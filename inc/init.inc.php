@@ -24,7 +24,11 @@ define('URL', "http://localhost/PHP/boutique/");
 $content = '';//variable prévue pour recevoir du contenu
 $error = '';//variable prévue pour recevoir les messages d'erreur
 $content1 = '';
-
+$url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+// if(strpos($url, 'admin') !== false){ 
+//     $admin = "../";
+//   }
+$admin = (strpos($url, 'admin') !== false) ? "../" : "";
 //------------------------------------------
 require_once "fonction.inc.php";
 

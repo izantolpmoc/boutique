@@ -1,4 +1,4 @@
-<?php require_once "inc/header.inc.php"; //inclusion du fichier header?> 
+<?php require_once "../inc/header.inc.php"; //inclusion du fichier header?> 
 <?php
 //EXERCICE : créer la page gestion des commandes :
 //restriction d'accès à la page admin :
@@ -117,4 +117,4 @@ if(isset($_GET['action']) && $_GET['action'] == 'suppression'){
 <?= $content ?>
 
 <?php endif; ?>
-<?php require_once "inc/footer.inc.php"; //inclusion du fichier footer ?>
+<?php require_once "../inc/footer.inc.php"; //inclusion du fichier footer ?>

@@ -1,4 +1,4 @@
-<?php require_once "inc/header.inc.php"; //inclusion du fichier header?> 
+<?php require_once "../inc/header.inc.php"; //inclusion du fichier header?> 
 <?php
 
 $success = "";
@@ -215,4 +215,4 @@ if($_POST){
 
 <?php endif; ?>
 
-<?php require_once "inc/footer.inc.php"; //inclusion du fichier footer ?>
+<?php require_once "".$admin."inc/footer.inc.php"; //inclusion du fichier footer ?>

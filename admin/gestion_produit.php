@@ -1,8 +1,8 @@
 <?php require_once "../inc/header.inc.php"?>
 
-<style>
+<!-- <style>
 <?php require_once "../assets/css/style.css"; ?>
-</style>
+</style> -->
 <?php
 
 //restriction de l'accès 
